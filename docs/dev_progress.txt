@@ -51,3 +51,9 @@ Czerwiec
 13 - Zmiana struktury programu
 14 - Usunięcie i stworzenie nowej wersji programu exe
 15 - Test programu w wersji exe
+16 - Uporządkowanie plików txt co do ich miejsca
+17 - Przygotowanie pliku gitignore
+18 - Przygotowanie pliku Licence.txt
+19 - Test generalny programu i analiza
+20 - Przygotowanie Repisitory na Github
+21 - Umieszczenie projektu na Github 
