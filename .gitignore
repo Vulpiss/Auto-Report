@@ -1,0 +1,67 @@
+# -------------------------
+# Python cache
+# -------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+
+# -------------------------
+# Virtual environment
+# -------------------------
+venv/
+.venv/
+env/
+ENV/
+
+# -------------------------
+# IDE / editors
+# -------------------------
+.idea/
+.vscode/
+*.iml
+
+# -------------------------
+# OS files
+# -------------------------
+.DS_Store
+Thumbs.db
+
+# -------------------------
+# PyInstaller
+# -------------------------
+build/
+dist/
+*.spec
+
+# -------------------------
+# Runtime outputs
+# -------------------------
+outputs/
+*.db
+report.db
+
+# -------------------------
+# Logs
+# -------------------------
+*.log
+
+# -------------------------
+# Environment variables / secrets
+# -------------------------
+.env
+.env.local
+
+# -------------------------
+# Temporary files
+# -------------------------
+*.tmp
+*.bak
+*.old
+
+# -------------------------
+# Jupyter / notebooks checkpoints
+# -------------------------
+.ipynb_checkpoints/
+
+# Local working data
+data/

@@ -1,0 +1,53 @@
+Kwiecień
+27 - Przygotowanie struktury projektu, określenie wymagań, wybór bibliotek
+28 - Stworzenie pliku main.py
+29 - Stworzenie pliku run_log.py
+30 - Stworzenie pliku config.py
+Maj
+1 - Stworzenie pliku llm_client.py
+2 - Stworzenie pliku llm_insights.py
+3 - Stworzenie pliku decision.py
+4 - Stworzenie pliku main.py oraz pdf_report.py
+5 - Stworzenie pliku app.py
+6 - Stworzenie plików db.py, import_csv.py, transform.py, querries.py, charts.py
+7 - Instalacja brakujących bibliotek i debugowanie kodu
+8 - Update pliku pdf report
+9 - Stworzenie pliku input.csv zgodnie z wymaganiami. debugowanie pliku main.py
+10 - Analiza wygenerowanego raportu
+11 - Update pliku Querries.py
+12 - Porównanie nowego i starego raportu
+13 - Update pliku decisions.py
+14 - Update pliku charts.py
+15 - Test i wygenerowanie nowego raportu o zmienionych parametrach
+16 - Update llm_insights.py aby wynik był podany w zaokrągleniu
+17 - Test i analiza nowej wersji raportu
+18 - Stworzenie pliku data_quality.py, update pluku main.py, update pliku import_csv.py
+19 - Update pliku pdf_report.py
+20 - Test raportu o nowych, zmienionych parametrach
+21 - Update pliku report_pdf
+22 - Test progrtamu ze zmienionymi parametrami pliku report_pdf
+23 - Update pliku llm_insight.py
+24 - Update pliku pdf report
+25 - Stworzenie pliku Validation.py
+26 - Update Pliku main.py
+27 - Stworzenie folderu scripts pliku generate_sample_with_baseline.py i stworzenie przykładowych danych
+28 - Update pliku app.py oraz run_log.py oraz instalacja streamlit
+29 - Stworzenie pliku README
+30 - Test zaktualizowanego pliku main.py
+31 - Zmiana parametrów config.py, test pliku main.py, aktualizacja pliku 
+Czerwiec
+1 - Update Readme, REquirements i przygotowanie programu pod wersje exe
+2 - Zmiana import_csv.py pod plik exe
+3 - przebudowanie pliku main pod wersje exe i stworznie pliku desktop_app.py
+4 - Instalacja pyinstlaer i stworzenie wersji programu exe
+5 - Test wersji Exe narzedzia
+6 - Stworzenie screenshotów pod GitHub
+7 - Update pliku README
+8 - Update pliku Requirements
+9 - Update pliku config.py
+10 - Stworzenie nowej wersji pliku exe
+11 - Test nowej wersji exe i ustalenie nowej struktury projektu
+12 - Przystosowanie kodu import_csv.py, querries.py, llm_insights.py pod nową strukturę danych
+13 - Zmiana struktury programu
+14 - Usunięcie i stworzenie nowej wersji programu exe
+15 - Test programu w wersji exe

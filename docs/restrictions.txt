@@ -1,0 +1,4 @@
+- LLM is optional and currently uses fallback mode
+- Decision layer is rule-based
+- Forecasting is not implemented yet
+- Data cleaning is intentionally simple for MVP
