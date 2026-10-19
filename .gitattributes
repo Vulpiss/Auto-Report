@@ -1,0 +1,12 @@
+# Keep verified source snapshots and CSV/session SHA-256 values byte-exact.
+# Source files currently contain both LF and CRLF; do not rewrite them on clone.
+* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+
+*.pdf binary
+*.pptx binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.mp4 binary
+*.ttf binary
+*.zip binary

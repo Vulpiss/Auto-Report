@@ -1,0 +1,39 @@
+AUTO-REPORT — WYDANIE 2026-10-06
+
+Paczka: AutoReportAnalyst-Windows-2026-10-06-hardening.zip
+
+1. Rozpakuj cały ZIP. Zachowaj folder _internal obok AutoReportAnalyst.exe.
+2. Uruchom AutoReportAnalyst.exe. Launcher otwiera lokalną aplikację w przeglądarce.
+3. Zaznacz „Chcę najpierw wypróbować program na przykładzie”.
+4. Kliknij „Utwórz raport”. Cały sztuczny przykład: 2 250,00 PLN,
+   14 pozycji i średnia 160,71 PLN. Nie są to wyniki firmy ani klienta.
+5. Przełącz trzy widoki. PDF jest przygotowywany automatycznie;
+   pobierz go przyciskiem „Pobierz gotowy raport PDF”.
+6. W „Zmień okres raportu” wybierz ostatnie 7 dni: 1 250,00 PLN i 7 pozycji.
+7. Dla własnego CSV odznacz przykład. Przy pierwszym eksporcie potwierdź
+   kolumny, format dat i kwot, znaczenie kwoty i walutę. Kolejne zgodne pliki
+   korzystają z zapamiętanego profilu.
+8. Błędne dane: sprawdź „Miejsca do poprawy w danych”, kliknij wiersz,
+   pobierz listę CSV, popraw dane u źródła albo w kopii i ponów import.
+9. Zakończ aplikację przyciskiem „Zakończ program” w małym oknie.
+   Samo zamknięcie karty przeglądarki pozostawia serwer uruchomiony.
+
+Python i PowerPoint nie są potrzebne do generowania plików z tej paczki.
+Do obejrzenia PPTX potrzebny jest program obsługujący prezentacje.
+Serwer działa na 127.0.0.1; launcher wybiera wolny port.
+
+Import: do 100 MiB i 1 000 000 rekordów. Jeden raport obejmuje maksymalnie
+5 lat kalendarzowych. Przykład: 02.10.2021–01.10.2026. Dłuższy plik wymaga
+jawnego wyboru okresu; wcześniejsze pozycje są oznaczane jako poza zakresem.
+
+Prosty tryb nie deklaruje kompletności eksportu. Porównania są w trybie
+zaawansowanym i wymagają potwierdzenia pełnego zakresu obu okresów.
+Waluta i netto/brutto opisują dane; aplikacja nie przelicza kursów ani podatku.
+
+Instrukcja: ANALYST_QUICKSTART.md. Diagnostyka: DATA_DIAGNOSTICS.md.
+Materiały do prezentacji projektu: folder portfolio.
+Wzorce PDF i nagranie dotyczą wyłącznie sztucznych danych.
+
+POTWIERDZONE: bieżące kontrole w LOCAL_HARDENING_RESULTS.md i RELEASE_CHECKS.json.
+Nagranie i PDF w folderze portfolio dotyczą wcześniejszego wydania 2026-10-04.
+UNKNOWN: czysty Windows, samodzielność nowego użytkownika i wynik u klienta.

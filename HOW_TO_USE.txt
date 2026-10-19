@@ -1,6 +1,14 @@
-1. Open AutoReport.exe
-2. Click Browse CSV
-3. Select a CSV with columns: date, value, category
-4. Set reporting period, e.g. 60 days
-5. Click Generate PDF Report
-6. The PDF will open automatically
+AUTO-REPORT — aktualna instrukcja portfolio
+
+Zacznij od README.md oraz docs/ANALYST_QUICKSTART.md.
+Pobierz wersję 2 (beta): https://github.com/Vulpiss/Auto-Report/releases/tag/v0.2.0-beta.1
+Paczka: AutoReportAnalyst-Windows-2026-10-06-hardening.zip.
+Rozpakuj cały ZIP i uruchom AutoReportAnalyst.exe.
+Zaznacz przykład i kliknij „Utwórz raport”: 2 250,00 PLN i 14 pozycji.
+Zakończ program przyciskiem „Zakończ program” w małym oknie.
+
+Starszą instrukcję zachowano w docs/history/.
+Bieżące kontrole techniczne: docs/LOCAL_HARDENING_RESULTS.md.
+Przygotowanie VM i pierwszego testu: docs/first-test/START_HERE.md.
+Test krok po kroku: docs/TRY_IT.md.
+Wersja 1 (archiwalne MVP): docs/LEGACY_MVP.md.

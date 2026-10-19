@@ -1,276 +1,121 @@
-import os
-from datetime import datetime
-from typing import Dict, Any, List
-
+from app.validation import currency_label
+"""Flow-based, Polish report with embedded fonts and explicit data rules."""
+from pathlib import Path
+from decimal import Decimal, ROUND_HALF_UP
+from xml.sax.saxutils import escape
+import matplotlib
+from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4
-from reportlab.pdfgen import canvas
-from reportlab.lib.units import cm
+from reportlab.lib.styles import ParagraphStyle
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, Image, CondPageBreak, KeepTogether
+
+WIDTH = A4[0] - 88
 
 
-PAGE_MARGIN_X = 2 * cm
-PAGE_MARGIN_TOP = 2 * cm
-PAGE_MARGIN_BOTTOM = 1.5 * cm
+def register_fonts():
+    root = Path(matplotlib.get_data_path()) / "fonts" / "ttf"
+    for name, filename in (("AR", "DejaVuSans.ttf"), ("AR-Bold", "DejaVuSans-Bold.ttf")):
+        if name not in pdfmetrics.getRegisteredFontNames():
+            pdfmetrics.registerFont(TTFont(name, str(root / filename)))
+    pdfmetrics.registerFontFamily("AR", normal="AR", bold="AR-Bold", italic="AR", boldItalic="AR-Bold")
 
 
-def draw_footer(c: canvas.Canvas, page_num: int) -> None:
-    c.setFont("Helvetica", 8)
-    c.drawString(PAGE_MARGIN_X, 1 * cm, f"Generated at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    c.drawRightString(A4[0] - PAGE_MARGIN_X, 1 * cm, f"Page {page_num}")
+def money(value):
+    if value is None:
+        return "N/A"
+    rounded = Decimal(value).quantize(Decimal('.01'), rounding=ROUND_HALF_UP)
+    return f"{abs(rounded) if rounded == 0 else rounded:,.2f}".replace(",", " ").replace(".", ",")
 
 
-def new_page(c: canvas.Canvas, page_num: int) -> tuple[int, float]:
-    draw_footer(c, page_num)
-    c.showPage()
-    page_num += 1
-    y = A4[1] - PAGE_MARGIN_TOP
-    return page_num, y
+def percent(value):
+    if value is None:
+        return "N/A"
+    rounded = Decimal(value).quantize(Decimal('.1'), rounding=ROUND_HALF_UP)
+    return f"{abs(rounded) if rounded == 0 else rounded:+.1f}%".replace(".", ",")
 
 
-def draw_wrapped_text(c, text, x, y, max_width, line_height):
-    words = str(text).split()
-    line = ""
-    lines = []
-
-    for word in words:
-        test_line = (line + " " + word).strip()
-        if c.stringWidth(test_line) <= max_width:
-            line = test_line
-        else:
-            if line:
-                lines.append(line)
-            line = word
-
-    if line:
-        lines.append(line)
-
-    for line_text in lines:
-        c.drawString(x, y, line_text)
-        y -= line_height
-
-    return y
-
-
-def draw_section_title(c, title, y):
-    c.setFont("Helvetica-Bold", 14)
-    c.drawString(PAGE_MARGIN_X, y, title)
-    y -= 0.5 * cm
-    c.line(PAGE_MARGIN_X, y, A4[0] - PAGE_MARGIN_X, y)
-    y -= 0.5 * cm
-    return y
-
-
-def draw_kpi_card(c, title, value, x, y, width=5 * cm, height=2 * cm):
-    c.rect(x, y - height, width, height, stroke=1, fill=0)
-
-    c.setFont("Helvetica-Bold", 9)
-    c.drawString(x + 0.3 * cm, y - 0.6 * cm, title)
-
-    c.setFont("Helvetica-Bold", 14)
-    c.drawString(x + 0.3 * cm, y - 1.4 * cm, value)
-
-
-def draw_box(c, title, text, x, y, width=17 * cm, height=2.2 * cm):
-    c.rect(x, y - height, width, height, stroke=1, fill=0)
-
-    c.setFont("Helvetica-Bold", 10)
-    c.drawString(x + 0.3 * cm, y - 0.5 * cm, title)
-
-    c.setFont("Helvetica", 10)
-    draw_wrapped_text(
-        c,
-        text,
-        x + 0.3 * cm,
-        y - 1.0 * cm,
-        max_width=width - 0.6 * cm,
-        line_height=12,
-    )
-
-    return y - height - 0.5 * cm
-
-
-def draw_bullets(c, title, items, x, y, page_num):
-    width, height = A4
-
-    c.setFont("Helvetica-Bold", 11)
-    c.drawString(x, y, title)
-    y -= 0.45 * cm
-
-    c.setFont("Helvetica", 10)
-
-    for item in items:
-        if y < PAGE_MARGIN_BOTTOM + 1.5 * cm:
-            page_num, y = new_page(c, page_num)
-
-        y = draw_wrapped_text(
-            c,
-            f"- {item}",
-            x,
-            y,
-            max_width=17 * cm,
-            line_height=12,
-        )
-        y -= 0.15 * cm
-
-    y -= 0.25 * cm
-    return y, page_num
-
-
-def build_pdf(
-    out_pdf: str,
-    meta: Dict[str, Any],
-    kpis: Dict[str, Any],
-    comparison: Dict[str, Any],
-    top_categories: List[Dict[str, Any]],
-    insights: Dict[str, Any],
-    chart_paths: Dict[str, str],
-    decision: str,
-    data_quality_notes: List[str],
-):
-    os.makedirs(os.path.dirname(out_pdf) or ".", exist_ok=True)
-
-    c = canvas.Canvas(out_pdf, pagesize=A4)
-    width, height = A4
-    page_num = 1
-    y = height - PAGE_MARGIN_TOP
-
-    # -------------------------
-    # HEADER
-    # -------------------------
-    c.setFont("Helvetica-Bold", 20)
-    c.drawString(PAGE_MARGIN_X, y, f"Automated Data Report")
-    y -= 0.8 * cm
-
-    c.setFont("Helvetica", 11)
-    c.drawString(PAGE_MARGIN_X, y, f"Report name: {meta.get('title', 'Dataset')}")
-    y -= 0.45 * cm
-    c.drawString(PAGE_MARGIN_X, y, f"Period: {kpis['start_date']} -> {kpis['end_date']}")
-    y -= 0.8 * cm
-
-    # -------------------------
-    # KPI CARDS
-    # -------------------------
-    y = draw_section_title(c, "KPI Summary", y)
-
-    draw_kpi_card(c, "Total value", f"{kpis['total_value']:,.2f}", PAGE_MARGIN_X, y)
-    draw_kpi_card(c, "Average value", f"{kpis['avg_value']:,.2f}", PAGE_MARGIN_X + 6 * cm, y)
-    draw_kpi_card(c, "Rows", f"{kpis['rows_cnt']}", PAGE_MARGIN_X + 12 * cm, y)
-
-    y -= 2.7 * cm
-
-    # -------------------------
-    # DECISION
-    # -------------------------
-    y = draw_section_title(c, "Decision Layer", y)
-    y = draw_box(c, "Decision", decision, PAGE_MARGIN_X, y)
-
-    # -------------------------
-    # PERIOD COMPARISON
-    # -------------------------
-    comparison_text = "Previous period has no data. Comparison unavailable."
-
-    if comparison.get("baseline_available", False):
-        ch = comparison["change_pct"]
-        comparison_text = (
-            f"Total change: {ch['total_value']:.1f}%. "
-            f"Average change: {ch['avg_value']:.1f}%. "
-            f"Rows change: {ch['rows_cnt']:.1f}%."
-        )
-
-    y = draw_box(c, "Period Comparison", comparison_text, PAGE_MARGIN_X, y)
-
-    # -------------------------
-    # CHARTS
-    # -------------------------
-    y = draw_section_title(c, "Charts", y)
-
-    trend_chart = chart_paths.get("trend")
-    top_categories_chart = chart_paths.get("top_categories")
-
-    if trend_chart and os.path.exists(trend_chart):
-        c.drawImage(
-            trend_chart,
-            PAGE_MARGIN_X,
-            y - 7 * cm,
-            width=17 * cm,
-            height=6.5 * cm,
-            preserveAspectRatio=True,
-        )
-        y -= 7.5 * cm
-    else:
-        c.setFont("Helvetica", 10)
-        c.drawString(PAGE_MARGIN_X, y, "Trend chart unavailable.")
-        y -= 0.6 * cm
-
-    if top_categories_chart and os.path.exists(top_categories_chart):
-        page_num, y = new_page(c, page_num)
-
-        y = draw_section_title(c, "Top Categories", y)
-
-        c.drawImage(
-            top_categories_chart,
-            PAGE_MARGIN_X,
-            y - 8 * cm,
-            width=17 * cm,
-            height=7.5 * cm,
-            preserveAspectRatio=True,
-        )
-        y -= 8.3 * cm
-    else:
-        c.setFont("Helvetica", 10)
-        c.drawString(PAGE_MARGIN_X, y, "Top categories chart unavailable.")
-        y -= 0.6 * cm
-
-    # -------------------------
-    # AI INSIGHTS
-    # -------------------------
-    page_num, y = new_page(c, page_num)
-
-    y = draw_section_title(c, "AI Insights / Fallback Analysis", y)
-
-    c.setFont("Helvetica-Bold", 11)
-    c.drawString(PAGE_MARGIN_X, y, "Executive summary")
-    y -= 0.45 * cm
-
-    c.setFont("Helvetica", 10)
-    y = draw_wrapped_text(
-        c,
-        insights.get("executive_summary", ""),
-        PAGE_MARGIN_X,
-        y,
-        max_width=17 * cm,
-        line_height=12,
-    )
-    y -= 0.5 * cm
-
-    y, page_num = draw_bullets(c, "Key insights", insights.get("key_insights", []), PAGE_MARGIN_X, y, page_num)
-    y, page_num = draw_bullets(c, "Risks / anomalies", insights.get("risks_anomalies", []), PAGE_MARGIN_X, y, page_num)
-    y, page_num = draw_bullets(c, "Recommended actions", insights.get("recommended_actions", []), PAGE_MARGIN_X, y, page_num)
-    y, page_num = draw_bullets(c, "Questions to ask", insights.get("questions_to_ask", []), PAGE_MARGIN_X, y, page_num)
-
-    # -------------------------
-    # DATA QUALITY
-    # -------------------------
-    if y < 8 * cm:
-        page_num, y = new_page(c, page_num)
-
-    y = draw_section_title(c, "Data Quality Notes", y)
-
-    for note in data_quality_notes:
-        if y < PAGE_MARGIN_BOTTOM + 1.5 * cm:
-            page_num, y = new_page(c, page_num)
-
-        c.setFont("Helvetica", 10)
-        y = draw_wrapped_text(
-            c,
-            f"- {note}",
-            PAGE_MARGIN_X,
-            y,
-            max_width=17 * cm,
-            line_height=12,
-        )
-        y -= 0.15 * cm
-
-    draw_footer(c, page_num)
-    c.save()
-
+def build_pdf(out_pdf, meta, kpis, comparison, top_categories, insights, chart_paths, decision, data_quality_notes):
+    register_fonts()
+    Path(out_pdf).parent.mkdir(parents=True, exist_ok=True)
+    body = ParagraphStyle("Body", fontName="AR", fontSize=9, leading=13, spaceAfter=6, allowWidows=0, allowOrphans=0, textColor=colors.HexColor("#263646"))
+    heading = ParagraphStyle("Heading", parent=body, fontName="AR-Bold", fontSize=13, leading=17, spaceBefore=10, spaceAfter=8, keepWithNext=True)
+    long_title = len(meta.get("title", "")) > 90
+    title_style = ParagraphStyle("Title", parent=heading, fontSize=18 if long_title else 23, leading=23 if long_title else 29, spaceBefore=0, spaceAfter=14)
+    small = ParagraphStyle("Small", parent=body, fontSize=8, leading=11)
+    def p(text, style=body):
+        return Paragraph(escape(str(text)), style)
+    def table(rows, widths):
+        t = Table([[p(cell) for cell in row] for row in rows], colWidths=widths, repeatRows=1, hAlign="LEFT")
+        t.setStyle(TableStyle([
+            ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#eaf2f3")),
+            ("VALIGN", (0, 0), (-1, -1), "TOP"),
+            ("LEFTPADDING", (0, 0), (-1, -1), 9), ("RIGHTPADDING", (0, 0), (-1, -1), 9),
+            ("TOPPADDING", (0, 0), (-1, -1), 7), ("BOTTOMPADDING", (0, 0), (-1, -1), 5),
+            ("LINEBELOW", (0, 0), (-1, 0), 0.6, colors.HexColor("#aac5c9")),
+            ("LINEBELOW", (0, 1), (-1, -1), 0.3, colors.HexColor("#dde4e7")),
+        ]))
+        return t
+    profile = meta.get("profile", {})
+    unit=currency_label(profile)
+    story = [
+        p("AUTO-REPORT / PODSUMOWANIE", small),
+        p(meta.get("title", "Raport wartości pozycji"), title_style),
+        p(f"Okres raportu: {kpis['start_date']} - {kpis['end_date']}"),
+        p(f"Waluta: {profile.get('currency', 'PLN')} | Podstawa kwoty: {profile.get('amount_basis', 'nieokreślona')}"),
+        p("Kategorie: " + ("Wszystkie" if meta.get("selected_categories") is None else ", ".join(meta["selected_categories"]))),
+        table([[f"Suma pozycji [{unit}]", f"Średnia pozycji [{unit}]", "Liczba pozycji"],
+               [money(kpis["total_value"]), money(kpis["avg_value"]), str(kpis["rows_cnt"])]], [WIDTH/3]*3),
+        Spacer(1, 8), p(insights["executive_summary"]),
+        p("Porównanie okresów", heading),
+        p(f"Poprzedni okres: {comparison['previous']['start_date']} - {comparison['previous']['end_date']}"),
+        p(comparison["reason"]),
+    ]
+    if comparison["baseline_available"]:
+        story.append(table([["Wskaźnik", "Poprzedni okres", "Różnica", "Zmiana"],
+                            [f"Suma [{unit}]", money(comparison["previous"]["total_value"]), money(comparison["difference"]["total_value"]), percent(comparison["change_pct"]["total_value"])],
+                            [f"Średnia [{unit}]", money(comparison["previous"]["avg_value"]), money(comparison["difference"]["avg_value"]), percent(comparison["change_pct"]["avg_value"])],
+                            ["Liczba pozycji", comparison["previous"]["rows_cnt"], str(comparison["difference"]["rows_cnt"]), percent(comparison["change_pct"]["rows_cnt"])]],
+                           [WIDTH*0.30, WIDTH*0.27, WIDTH*0.22, WIDTH*0.21]))
+    if decision != comparison["reason"]:
+        story.append(p(decision))
+    business=meta.get("business",{})
+    if any(v is not None for v in business.values()):
+        story += [p("Dokumenty i rentowność",heading)]
+        labels={"orders":"Unikalne dokumenty w zakresie","quantity":"Ilość ["+profile.get("quantity_unit","")+"]",
+                "average_order":"Wartość / dokument ["+unit+"]","cost":"Koszt pozycji ["+unit+"]",
+                "profit":"Zysk pozycji ["+unit+"]","margin_pct":"Marża [%]"}
+        story.append(table([["Wskaźnik","Wartość"]]+[[label,money(business.get(key))] for key,label in labels.items()],[WIDTH*.67,WIDTH*.33]))
+        story.append(p("N/A oznacza brak mapowania, brak wartości w co najmniej jednej pozycji lub brak podstaw do obliczenia. Dokumenty i ich średnia dotyczą pozycji po filtrach. Marża = zysk / wartość sprzedaży; wymaga dodatniej wartości i potwierdzonej semantyki.",small))
+    story.append(p("Kontrola danych i reguły", heading))
+    story += [p(note) for note in data_quality_notes]
+    story += [Spacer(1, 8), p("Struktura wartości pozycji", heading)]
+    trend = chart_paths.get("trend")
+    if trend:
+        story += [p("Wartość według daty", heading), Image(trend, width=WIDTH, height=WIDTH*3.2/9)]
+    rows = [["Kategoria", f"Suma [{unit}]"]] + [[r["category"], money(r["total_value"])] for r in top_categories]
+    widths = [WIDTH*0.73, WIDTH*0.27]
+    category_heading = p("Kategorie - najwyższe sumy i pozostałe", ParagraphStyle("TableHeading", parent=heading, keepWithNext=False))
+    # Reserve the heading, column labels and first row, while allowing the rest
+    # of a long table to use the current page and repeat its labels on the next.
+    first_rows_height = table(rows[:2], widths).wrap(WIDTH, 10000)[1]
+    heading_height = category_heading.wrap(WIDTH, 10000)[1] + heading.spaceBefore + heading.spaceAfter
+    story += [CondPageBreak(first_rows_height + heading_height), category_heading, table(rows, widths)]
+    story += [Spacer(1, 8), p("Tabela obejmuje do 10 kategorii oraz sumę pozostałych. Razem odpowiada wartości po filtrach.", small),
+              p("Średnia zaokrąglona do 0,01 jednostki metodą HALF_UP. Sumy liczone w całkowitych setnych jednostki.", small)]
+    source_range = meta.get("source_range", {})
+    story += [KeepTogether([p(f"Zakres dat w pliku: {source_range.get('min_date', '')} - {source_range.get('max_date', '')}", small),
+              p("Zakres dat występujących w pliku nie dowodzi kompletności eksportu.", small),
+              p(f"SHA-256 źródła: {meta.get('source_sha256', '')}", small)])]
+    def footer(canvas, doc):
+        canvas.saveState()
+        canvas.setStrokeColor(colors.HexColor("#c4d3d7"))
+        canvas.line(44, 39, A4[0]-44, 39)
+        canvas.setFont("AR", 7)
+        canvas.drawString(44, 26, "Auto-Report 0.2.0 | Szablon 4 | " + meta.get("run_id", ""))
+        canvas.drawRightString(A4[0]-44, 26, f"Strona {doc.page}")
+        canvas.restoreState()
+    SimpleDocTemplate(out_pdf, pagesize=A4, leftMargin=44, rightMargin=44, topMargin=38, bottomMargin=52,
+                      title=meta.get("title", "Auto-Report"), author="Auto-Report").build(story, onFirstPage=footer, onLaterPages=footer)
     return out_pdf

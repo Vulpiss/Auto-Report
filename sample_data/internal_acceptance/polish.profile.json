@@ -1,0 +1,22 @@
+{
+  "date_col": "date",
+  "value_col": "value",
+  "category_col": "category",
+  "delimiter": ";",
+  "encoding": "cp1250",
+  "date_format": "%d.%m.%Y",
+  "decimal_separator": ",",
+  "allow_negative": false,
+  "currency": "PLN",
+  "amount_basis": "nieokreślona",
+  "amount_precision": "strict",
+  "quantity_col": "",
+  "order_col": "",
+  "product_col": "",
+  "customer_col": "",
+  "cost_col": "",
+  "profit_col": "",
+  "value_is_sales": false,
+  "quantity_unit": "",
+  "value_mode": "amount"
+}

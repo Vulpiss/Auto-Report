@@ -63,5 +63,24 @@ report.db
 # -------------------------
 .ipynb_checkpoints/
 
+# Generated release and QA artifacts
+release/
+output/
+
 # Local working data
 data/
+scripts/sample_data/
+
+# Temporary chart data produced during local browser checks
+.chart-data-*/
+
+# Local review files and working notes (kept on this computer)
+/tmp/
+/Progress auto-report.txt
+/Auto-Report_Framework_GPT-6_Astra.md
+/docs/PROSPECTS_20.md
+/docs/OUTREACH_DRAFTS.md
+/docs/build_environment.txt
+/.codex/
+/.agents/
+.env.*

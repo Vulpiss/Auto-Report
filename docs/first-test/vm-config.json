@@ -1,0 +1,22 @@
+{
+  "status": "PREPARED_NOT_CREATED",
+  "date": "2026-10-14",
+  "hypervisor": "Oracle VirtualBox 7.2 for Windows x86_64; record the exact installed version",
+  "name": "AutoReport-CleanWindows-20261014",
+  "guest": "Windows 11 x64",
+  "iso_path": null,
+  "iso_sha256": null,
+  "memory_mib": 8192,
+  "virtual_cpus": 4,
+  "disk": {"format": "VDI", "capacity_gib": 80, "allocation": "dynamic"},
+  "firmware": "UEFI",
+  "secure_boot": true,
+  "tpm": "2.0",
+  "network": "NAT during setup; disconnect for offline application test",
+  "screen": {"width": 1920, "height": 1080, "scaling_percent": 100},
+  "baseline_snapshot": "00-clean-windows-before-autoreport",
+  "python_installed": false,
+  "office_installed": false,
+  "transfer": "Copy the handoff package to guest-local disk; record transfer method and Guest Additions version if used",
+  "clean_windows_result": "UNKNOWN"
+}

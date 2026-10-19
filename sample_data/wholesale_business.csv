@@ -1,0 +1,6 @@
+date,value,category,quantity,order,product,customer,cost
+2025-09-01,100,A,2,O1,P1,C1,60
+2025-09-02,200,B,4,O2,P2,C2,140
+2026-09-01,150,A,3,N1,P1,C1,90
+2026-09-02,100,B,2,N1,P2,C1,80
+2026-09-03,350,A,7,N2,P1,C2,200

@@ -34,7 +34,7 @@ Maj
 28 - Update pliku app.py oraz run_log.py oraz instalacja streamlit
 29 - Stworzenie pliku README
 30 - Test zaktualizowanego pliku main.py
-31 - Zmiana parametrów config.py, test pliku main.py, aktualizacja pliku 
+31 - Zmiana parametrów config.py, test pliku main.py, aktualizacja pliku
 Czerwiec
 1 - Update Readme, REquirements i przygotowanie programu pod wersje exe
 2 - Zmiana import_csv.py pod plik exe
@@ -56,4 +56,4 @@ Czerwiec
 18 - Przygotowanie pliku Licence.txt
 19 - Test generalny programu i analiza
 20 - Przygotowanie Repisitory na Github
-21 - Umieszczenie projektu na Github 
+21 - Umieszczenie projektu na Github

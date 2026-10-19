@@ -1,0 +1,17 @@
+{
+  "data_kind": "synthetic",
+  "reference_note": "Niezależny wzorzec portfolio: 1000 + 750 + 500 = 2250; 14 pozycji; 2250 / 14 = 160.71 (HALF_UP).",
+  "source_sha256": "89473b8e715b6e21e3513df6226b632bbc6e31ae5052681bab03af08acedac7f",
+  "start": "2026-08-31",
+  "end": "2026-09-13",
+  "rows": 14,
+  "total": "2250.00",
+  "categories": {
+    "Papier": "1000.00",
+    "Teczki i segregatory": "750.00",
+    "Środki czystości": "500.00"
+  },
+  "average": "160.71",
+  "currency": "PLN",
+  "amount_basis": "nieokreślona"
+}

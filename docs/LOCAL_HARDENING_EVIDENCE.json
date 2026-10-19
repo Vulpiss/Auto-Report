@@ -1,0 +1,425 @@
+{
+  "date": "2026-10-06",
+  "scope": "Local portfolio hardening; synthetic data and isolated profiles only.",
+  "result": "PASS_LOCAL_TESTS",
+  "release": {
+    "release": "AutoReportAnalyst-Windows-2026-10-06-hardening.zip",
+    "date": "2026-10-06",
+    "source_rebuilt": true,
+    "application_version": "0.2.0",
+    "template_version": "4",
+    "exe_sha256": "c440b3f4e40fae3c0371dc4bd84c3f1d460fd1aa1fbb1d3e65432a6388b53c00",
+    "dependency_lock_sha256": "bf056bc3dfda50b9050767988f204946e39bee2e25c63f1352051fb441dc4e12"
+  },
+  "release_checks": {
+    "date": "2026-10-06",
+    "result": "PASS",
+    "tests": 138,
+    "exe_sha256": "c440b3f4e40fae3c0371dc4bd84c3f1d460fd1aa1fbb1d3e65432a6388b53c00",
+    "rebuilt_from_source": true,
+    "zip_crc_passed": true,
+    "browser_checks_passed": true,
+    "pdf_snapshot_numbers_passed": true,
+    "dependency_lock_matched": true,
+    "clean_windows": "UNKNOWN",
+    "native_launcher": "UNKNOWN"
+  },
+  "regression": {
+    "tests": 138,
+    "seconds": 21.602,
+    "result": "PASS",
+    "log_sha256": "5e5d7d3094a394cbff9008d04005eb5a0e6c8bf0ddc9ce6db59e00b91e77b9a3"
+  },
+  "pdf_edge_cases": {
+    "date": "2026-10-06",
+    "data": "synthetic",
+    "template_version": "4",
+    "cases": [
+      {
+        "case": "grosze-i-zwroty",
+        "pages": 2,
+        "expected": {
+          "total_minor": 4,
+          "rows": 7,
+          "average": "0.01",
+          "previous_minor": 7
+        },
+        "pdf_sha256": "ac4c44feace00c2be69de8d8814669c43a30a3e461e0a64837feaaf119d07a01",
+        "rendered_pages": 2,
+        "render_directory": "build/local-hardening/pdf-c33b8f9e3b/grosze-i-zwroty-render"
+      },
+      {
+        "case": "dlugie-kategorie",
+        "pages": 2,
+        "expected": {
+          "total_minor": 66600,
+          "rows": 36,
+          "average": "18.50"
+        },
+        "pdf_sha256": "8600a1334cb25e762bf6058998d5422ef721ef5e1815c8c574f11853aa480ecf",
+        "rendered_pages": 2,
+        "render_directory": "build/local-hardening/pdf-c33b8f9e3b/dlugie-kategorie-render"
+      },
+      {
+        "case": "rentownosc-i-kontrola",
+        "pages": 2,
+        "expected": {
+          "total_minor": 60000,
+          "rows": 6,
+          "average": "100.00",
+          "previous_minor": 60000,
+          "business": {
+            "orders": 3,
+            "quantity": "6",
+            "cost": "360",
+            "profit": "240",
+            "average_order": "200",
+            "margin_pct": "40"
+          }
+        },
+        "pdf_sha256": "a963afe8c622dd1892cf090b90cf3d386ecf00ea3f0c57e19c14464a18dec7c5",
+        "rendered_pages": 2,
+        "render_directory": "build/local-hardening/pdf-c33b8f9e3b/rentownosc-i-kontrola-render"
+      }
+    ],
+    "visual_review": {
+      "result": "PASS",
+      "reviewer": "Codex",
+      "date": "2026-10-06",
+      "pages_inspected": 6,
+      "dpi": 120,
+      "scope": "Every rendered page inspected; Polish characters, axes, long labels, page breaks, source block and footers readable."
+    }
+  },
+  "benchmark": {
+    "date": "2026-10-06",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python": "3.11.3",
+    "synthetic": true,
+    "specs": [
+      {
+        "name": "100k",
+        "rows": 100000,
+        "categories": 500,
+        "days": 14,
+        "start": "2026-09-23",
+        "end": "2026-10-06",
+        "bytes": 8400020,
+        "expected_minor": 10100000,
+        "average": "1.01"
+      },
+      {
+        "name": "1m-5lat",
+        "rows": 1000000,
+        "categories": 2000,
+        "days": 1826,
+        "start": "2021-10-07",
+        "end": "2026-10-06",
+        "bytes": 84000020,
+        "expected_minor": 101000000,
+        "average": "1.01"
+      }
+    ],
+    "source": [
+      {
+        "case": "100k",
+        "result": "PASS",
+        "rows": 100000,
+        "bytes": 8400020,
+        "expected_minor": 10100000,
+        "analysis_seconds": 4.521,
+        "model_and_page_seconds": 0.035,
+        "visible_rows": 100,
+        "memory": {
+          "peak_working_set_mib": 152.09,
+          "peak_private_commit_mib": 492.8
+        }
+      },
+      {
+        "case": "1m-5lat",
+        "result": "PASS",
+        "rows": 1000000,
+        "bytes": 84000020,
+        "expected_minor": 101000000,
+        "analysis_seconds": 46.669,
+        "model_and_page_seconds": 0.593,
+        "visible_rows": 100,
+        "memory": {
+          "peak_working_set_mib": 1110.38,
+          "peak_private_commit_mib": 1453.64
+        }
+      },
+      {
+        "case": "over-rows",
+        "result": "REJECTED",
+        "seconds": 44.755,
+        "memory": {
+          "peak_working_set_mib": 1109.77,
+          "peak_private_commit_mib": 1453.56
+        }
+      },
+      {
+        "case": "over-bytes",
+        "result": "REJECTED",
+        "seconds": 0.216,
+        "memory": {
+          "peak_working_set_mib": 152.31,
+          "peak_private_commit_mib": 492.97
+        }
+      }
+    ],
+    "exe": [
+      {
+        "case": "100k",
+        "result": "PASS",
+        "import_analysis_pdf_seconds": 6.078,
+        "metrics": [
+          "101 000,00",
+          "100000",
+          "1,01"
+        ],
+        "pdf_downloaded": true
+      },
+      {
+        "case": "1m-5lat",
+        "result": "PASS",
+        "import_analysis_pdf_seconds": 55.407,
+        "metrics": [
+          "1 010 000,00",
+          "1000000",
+          "1,01"
+        ],
+        "pdf_downloaded": true
+      }
+    ],
+    "exe_sha256": "c440b3f4e40fae3c0371dc4bd84c3f1d460fd1aa1fbb1d3e65432a6388b53c00",
+    "exe_memory": {
+      "peak_working_set_mib": 1496.3,
+      "peak_private_commit_mib": 1860.05
+    },
+    "scope": "Local synthetic data; one run per case. Process memory excludes browser/OS. No guarantee for arbitrary computers or exports.",
+    "downloaded_pdf_checks": [
+      {
+        "case": "100k",
+        "pages": 2,
+        "text_checks": true
+      },
+      {
+        "case": "1m-5lat",
+        "pages": 2,
+        "text_checks": true
+      }
+    ],
+    "downloaded_pdf_visual_review": {
+      "result": "PASS",
+      "reviewer": "Codex",
+      "date": "2026-10-06",
+      "pages_inspected": 4,
+      "dpi": 100
+    }
+  },
+  "interruption": {
+    "date": "2026-10-06",
+    "synthetic": true,
+    "result": "PASS",
+    "cases": [
+      {
+        "stage": "import",
+        "child_terminated": true,
+        "previous_report_unchanged": true,
+        "source_unchanged": true,
+        "no_partial_report_published": true,
+        "retry_minor": 1234
+      },
+      {
+        "stage": "export",
+        "child_terminated": true,
+        "previous_report_unchanged": true,
+        "source_unchanged": true,
+        "no_partial_report_published": true,
+        "retry_minor": 1234
+      }
+    ],
+    "scope": "Only owned children terminated; temporary unfinished exports kept separately for diagnostics"
+  },
+  "browser": {
+    "full_metrics": [
+      "2 250,00",
+      "14",
+      "160,71"
+    ],
+    "weekly_metrics": [
+      "1 250,00",
+      "7",
+      "178,57"
+    ],
+    "missing_completeness_declared": true,
+    "invalid_csv_blocks_pdf": true,
+    "row_selection_shows_hint": true,
+    "corrected_metrics": [
+      "2 250,00",
+      "14",
+      "160,71"
+    ],
+    "repaired_import_clears_errors": true,
+    "date": "2026-10-06",
+    "input_kind": "synthetic",
+    "runtime": "Windows / Edge, local server",
+    "mode": "packaged-exe",
+    "isolated_profiles": true,
+    "pdf_pages": 2,
+    "pdf_text_checks": true,
+    "diagnostic_csv_lines": [
+      10,
+      14
+    ],
+    "source_unchanged": true,
+    "expected": {
+      "data_kind": "synthetic",
+      "currency": "PLN",
+      "amount_basis": "nieokreślona",
+      "full": {
+        "start": "2026-08-31",
+        "end": "2026-09-13",
+        "rows": 14,
+        "total": "2250.00",
+        "average": "160.71",
+        "categories": {
+          "Papier": "1000.00",
+          "Teczki i segregatory": "750.00",
+          "Środki czystości": "500.00"
+        }
+      },
+      "current": {
+        "start": "2026-09-07",
+        "end": "2026-09-13",
+        "rows": 7,
+        "total": "1250.00",
+        "average": "178.57",
+        "categories": {
+          "Papier": "550.00",
+          "Teczki i segregatory": "450.00",
+          "Środki czystości": "250.00"
+        }
+      },
+      "previous": {
+        "start": "2026-08-31",
+        "end": "2026-09-06",
+        "rows": 7,
+        "total": "1000.00",
+        "average": "142.86",
+        "categories": {
+          "Papier": "450.00",
+          "Teczki i segregatory": "300.00",
+          "Środki czystości": "250.00"
+        }
+      },
+      "comparison_in_simple_mode": "unavailable: export completeness not declared",
+      "change_if_both_periods_confirmed_complete": "25.00%",
+      "bad_fields": [
+        {
+          "csv_line": 10,
+          "column": "value",
+          "value": "abc"
+        },
+        {
+          "csv_line": 14,
+          "column": "category",
+          "value": ""
+        }
+      ],
+      "source_sha256": "89473b8e715b6e21e3513df6226b632bbc6e31ae5052681bab03af08acedac7f"
+    },
+    "pdf_sha256": "02156ee1994046e67b9916a0928728404ce2c41e98024b18024ec841e5136638",
+    "exe_sha256": "c440b3f4e40fae3c0371dc4bd84c3f1d460fd1aa1fbb1d3e65432a6388b53c00"
+  },
+  "vm_preflight": {
+    "date": "2026-10-06",
+    "scope": "Read-only local preflight; no VM created or system settings changed",
+    "cpu": "Intel(R) Core(TM) i5-10400F CPU @ 2.90GHz",
+    "memory_bytes": 51402534912,
+    "windows_caption": "Microsoft Windows 11 Home",
+    "windows_version": "10.0.26200",
+    "virtualization_firmware_enabled": true,
+    "vm_monitor_mode_extensions": true,
+    "slat": true,
+    "hypervisor_present": false,
+    "commands": [
+      {
+        "name": "Get-VM",
+        "found": false
+      },
+      {
+        "name": "VBoxManage",
+        "found": false
+      },
+      {
+        "name": "vmrun",
+        "found": false
+      }
+    ],
+    "typical_installations": [
+      {
+        "path": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\Modules\\Hyper-V",
+        "found": false
+      },
+      {
+        "path": "C:\\Program Files\\Oracle\\VirtualBox\\VBoxManage.exe",
+        "found": false
+      },
+      {
+        "path": "C:\\Program Files (x86)\\VMware\\VMware Workstation\\vmrun.exe",
+        "found": false
+      }
+    ],
+    "clean_windows": "UNKNOWN",
+    "native_launcher": "UNKNOWN"
+  },
+  "source_sha256": {
+    "app/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "app/analysis.py": "fcf7c10d93eabb4ec34d0047f00512a5ae11a046c832d020dcb594bdf77e1795",
+    "app/analyst_tools.py": "12d53a6995306ab1101d125f9005c18a8ed44523b69689e7e6800485962abe23",
+    "app/business.py": "4798d3b56963d7bd86880dad8632b1fd5de5a6917a2d7d778643e3cda9d2c824",
+    "app/charts.py": "b0bd84a12c2cfa99028a9210b713fc3555335a1d77957250a5a9015755deae37",
+    "app/config.py": "c5cc0a044b09e2d1d72309799cfdd5738801716e94f5e95d35c27c6584309f74",
+    "app/dashboard_model.py": "097e117f0889dd8fd2e2d5c510f071a16655af942c03f6698936c9663b662f3c",
+    "app/dashboard_render.py": "a4fd32cb156988321204bdc74e62900e2b6ab261aeabc287231042fd3aec25cd",
+    "app/data_quality.py": "f80b7cdb2b34f18e565ea316359e9251087546dad5464b8a87ab1f7ebc92cea7",
+    "app/db.py": "0f4cdbd8afb9376665e05fec6edd9e3669f279e1fa4083dea6200617ca1b2049",
+    "app/decision.py": "903513661e898d8b9683cede0aece58162718ed504c4632fa4cba33047d417f2",
+    "app/editable_presentation.py": "c2e51c958c7c2d52b0e0fc8c7f93cb1cbd3c37423e053fb59ac34332504eaa45",
+    "app/import_csv.py": "b97f18e8103c69da92266f450088a4fa31fd0c4934861872ebf370ccee842826",
+    "app/import_diagnostics.py": "1b5be3afb181911c658851b20b9cc2d6db141c556556c167a40a4a6fcc7630be",
+    "app/llm_client.py": "d9981d796c546b698d30a52b628092c6d27858cdc02cdbbdcdb0cde2f03a9668",
+    "app/llm_insights.py": "8f189d3df013e06c4b629c75e8290df549c497c6c0490f4cb0233f8c678f1ff2",
+    "app/pdf_report.py": "47af1e4910d456e7de94cb721210389bde0b8679f3d7a7165130fbd62d058678",
+    "app/pipeline.py": "ce7e6aa795af294dd79fabc0cf30b395cfdd52862fe5c90b7fe320fc27ee7637",
+    "app/presentation.py": "f055ceb357d35ec3a40ba0c184963aba4f3b81a9ccda27bc4ea8cbda5bf85d6b",
+    "app/profile_library.py": "f27bce8b6d29c7e64534de1ca0fcbf17c073d4ad1f759704530edb724f2c09da",
+    "app/profiles.py": "451c148a37c57bee31e159b8f8088d5909e831c1b506a0da685d20ab33293d52",
+    "app/queries.py": "dc4a75ec3743f1501a4e0749c4b70e91db90d90f0b1656d3ee851e3195bb1436",
+    "app/run_log.py": "37746e3f1e5652f6577a288cccf2471217428fff7ee842887fc83a7927f85e4b",
+    "app/simple_import.py": "75a47fc7291d60e7de7496c7f5cc82819cb96ba679e11fdaf02cb135a4c1dc5f",
+    "app/transform.py": "a7ffcdab820a73913a8090e8bd7720c4b90eb7d2f0eeb82a0d05080b480df707",
+    "app/validation.py": "bef930b01808ae0ce2abea77721faa15e5b7434d1b819530a162c4777fc5f55d",
+    "app/workspace.py": "e4b2145517a25cb181fa6f8a28ed5e7da6622976f2f5d8bcc47c7d3eaa03dcaa",
+    "dashboard_entry.py": "2f7d3812dc7cb546ad40deab17e13c95bb3fac121515ab546ff11520a533d7b8",
+    "interfaces/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "interfaces/dashboard_views.py": "793861dd96d0946224d115a65c63e669ec70929e7340a176bfc6fd75521cb8f4",
+    "interfaces/desktop_app.py": "8a298a81a0d37f3c63d633b5a062870808870b7764881748c422af653083e8ae",
+    "interfaces/import_feedback.py": "1ab9ebe9f848910b89806b92bc13f2266cecf6ad4008e22a7f6632b41de89d42",
+    "interfaces/simple_app.py": "bc4586976051c4039acf3a5f47d00e7b871dd4551423b6e4806949ed841ce8a8",
+    "interfaces/streamlit_app.py": "9cb5a8ceb629fdcb683fc82e4ec1ef80b02eb820bef85322999ab715f8d18ea2"
+  },
+  "unknown": [
+    "Clean Windows VM",
+    "Manual native launcher workflow",
+    "New-user independence",
+    "Customer demand",
+    "Customer time savings",
+    "Service profitability"
+  ],
+  "hypothesis": [
+    "Small wholesale company as recipient"
+  ]
+}

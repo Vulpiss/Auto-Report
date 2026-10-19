@@ -1,0 +1,13 @@
+{
+  "date_col": "date",
+  "value_col": "value",
+  "category_col": "category",
+  "delimiter": ",",
+  "encoding": "utf-8-sig",
+  "date_format": "%Y-%m-%d",
+  "decimal_separator": ".",
+  "allow_negative": false,
+  "currency": "PLN",
+  "amount_basis": "nieokreślona",
+  "amount_precision": "strict"
+}

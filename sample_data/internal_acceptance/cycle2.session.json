@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "source_sha256": "bb0a95268fe3a83f833403ebc4f0cc73f73a13ab747af5536a153de59a00b051",
+  "profile": {
+    "date_col": "date",
+    "value_col": "value",
+    "category_col": "category",
+    "delimiter": ",",
+    "encoding": "utf-8-sig",
+    "date_format": "%Y-%m-%d",
+    "decimal_separator": ".",
+    "allow_negative": true,
+    "currency": "PLN",
+    "amount_basis": "netto",
+    "amount_precision": "strict",
+    "quantity_col": "quantity",
+    "order_col": "order",
+    "product_col": "product",
+    "customer_col": "customer",
+    "cost_col": "cost",
+    "profit_col": "",
+    "value_is_sales": true,
+    "quantity_unit": "szt.",
+    "value_mode": "amount"
+  },
+  "settings": {
+    "grouping": "Dzień",
+    "end": "2026-09-20",
+    "coverage_start": "2026-08-31",
+    "coverage_end": "2026-09-20",
+    "start": "2026-09-14",
+    "comparison_mode": "Poprzedni okres"
+  }
+}

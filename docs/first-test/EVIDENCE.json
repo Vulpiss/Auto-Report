@@ -1,0 +1,137 @@
+{
+  "date": "2026-10-14",
+  "result": "PASS_LOCAL_PREPARATION_CHECKS",
+  "data_kind": "synthetic",
+  "regression": {
+    "tests": 146,
+    "seconds": 26.513,
+    "result": "PASS",
+    "log_sha256": "e61f721adb7734be82196b32f48828ac016bb5b93afdb32d0fccb39e916e726f"
+  },
+  "new_acceptance_tests": 8,
+  "windows_script": {
+    "result": "PASS",
+    "script_sha256": "deab422934b6f569198caf08a4d9174344faf9bf500195798d0bc2718cd9da13",
+    "cases": [
+      {
+        "case": "wrong-hash",
+        "expected_result_observed": true,
+        "exit": 1,
+        "result": "FAIL"
+      },
+      {
+        "case": "path-traversal",
+        "expected_result_observed": true,
+        "exit": 1,
+        "result": "FAIL"
+      },
+      {
+        "case": "server-restart",
+        "expected_result_observed": true,
+        "exit": 0,
+        "result": "PASS_SERVER_RESTART"
+      }
+    ]
+  },
+  "server_restart": {
+    "started_at": "2026-10-14T17:46:36.6695319+02:00",
+    "result": "PASS_SERVER_RESTART",
+    "sessions": [
+      {
+        "number": 1,
+        "port": 60973,
+        "health": true,
+        "stopped": true,
+        "python_in_path": false
+      },
+      {
+        "number": 2,
+        "port": 60980,
+        "health": true,
+        "stopped": true,
+        "python_in_path": false
+      }
+    ],
+    "scope": "Owned EXE server only; two starts with isolated settings and no Python in PATH",
+    "clean_windows": "UNKNOWN",
+    "native_launcher": "UNKNOWN",
+    "user_independence": "UNKNOWN",
+    "profile_recall_in_ui": "UNKNOWN",
+    "archive_sha256": "d99a954fc1c3be63c452e0607a6158f99f7196df3754cfa8e2dcadcf71f6f430",
+    "windows": {
+      "caption": "Microsoft Windows 11 Home",
+      "version": "10.0.26200",
+      "architecture": "64-bitowy",
+      "memory_bytes": 51402534912
+    },
+    "exe_sha256": "c440b3f4e40fae3c0371dc4bd84c3f1d460fd1aa1fbb1d3e65432a6388b53c00",
+    "finished_at": "2026-10-14T17:46:49.0991838+02:00"
+  },
+  "numeric_cli": [
+    {
+      "case": "synthetic",
+      "exit": 0,
+      "result": "PASS_NUMBERS_ONLY"
+    },
+    {
+      "case": "blank",
+      "exit": 2,
+      "result": "INCOMPLETE_OR_INVALID"
+    },
+    {
+      "case": "existing_output_preserved",
+      "exit": 2,
+      "result": "PASS"
+    }
+  ],
+  "vm_preflight": {
+    "date": "2026-10-14",
+    "scope": "Read-only preflight; owner requested VM configuration and instructions only",
+    "windows": "Microsoft Windows 11 Home",
+    "hypervisor_present": false,
+    "virtualization_firmware_enabled": true,
+    "tools": [
+      {
+        "name": "Get-VM",
+        "found": false
+      },
+      {
+        "name": "VBoxManage",
+        "found": false
+      },
+      {
+        "name": "vmrun",
+        "found": false
+      },
+      {
+        "name": "qemu-system-x86_64",
+        "found": false
+      }
+    ],
+    "iso_and_vm_available": "No: owner confirmed 2026-10-14",
+    "clean_windows": "UNKNOWN",
+    "vm_created": false
+  },
+  "application_source_matches_2026_10_06_snapshot": true,
+  "application_rebuilt": false,
+  "source_tools_sha256": {
+    "scripts/Test-Workstation.ps1": "deab422934b6f569198caf08a4d9174344faf9bf500195798d0bc2718cd9da13",
+    "scripts/verify_acceptance.py": "d59b795cbbe8d1caab22e0cc8edc02774d77ce944e03acaf647aeead34c52aea",
+    "scripts/package_first_test.py": "597cb5b4d216a724715ee7549dd36a30094ab661bc03e65ecde41b73a51849e9"
+  },
+  "user_confirmed": {
+    "iso_or_vm_available": false,
+    "real_export_or_process_available": false,
+    "requested": "VM configuration/instructions and first-test materials"
+  },
+  "open_gates": {
+    "clean_windows": "UNKNOWN",
+    "native_launcher": "UNKNOWN",
+    "user_independence": "UNKNOWN",
+    "real_csv_acceptance": "UNKNOWN",
+    "customer_discovery": "NOT_STARTED",
+    "paid_pilot": "NOT_STARTED",
+    "customer_benefit": "UNKNOWN",
+    "delivery_economics": "UNKNOWN"
+  }
+}

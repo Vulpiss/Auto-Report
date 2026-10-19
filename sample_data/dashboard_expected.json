@@ -1,0 +1,26 @@
+{
+  "all": {
+    "total_minor": 38000,
+    "rows_cnt": 3,
+    "avg_value": "126.67",
+    "previous_minor": 35000,
+    "difference": "30",
+    "change_display": "+8,6%"
+  },
+  "A": {
+    "total_minor": 40000,
+    "rows_cnt": 2,
+    "avg_value": "200.00",
+    "previous_minor": 30000,
+    "difference": "100",
+    "change_display": "+33,3%"
+  },
+  "category_differences": {
+    "A": "100",
+    "B": "-70"
+  },
+  "daily_minor": [
+    13000,
+    25000
+  ]
+}

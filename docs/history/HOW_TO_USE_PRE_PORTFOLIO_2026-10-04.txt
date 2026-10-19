@@ -1,0 +1,6 @@
+1. Open AutoReport.exe
+2. Click Browse CSV
+3. Select a CSV with columns: date, value, category
+4. Set reporting period, e.g. 60 days
+5. Click Generate PDF Report
+6. The PDF will open automatically

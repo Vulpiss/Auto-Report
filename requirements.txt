@@ -1,6 +1,2 @@
-pandas
-matplotlib
-reportlab
-streamlit
-python-dotenv
-pyinstaller
+matplotlib==3.10.9
+reportlab==4.5.0

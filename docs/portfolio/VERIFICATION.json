@@ -1,0 +1,100 @@
+{
+  "full_metrics": [
+    "2 250,00",
+    "14",
+    "160,71"
+  ],
+  "weekly_metrics": [
+    "1 250,00",
+    "7",
+    "178,57"
+  ],
+  "missing_completeness_declared": true,
+  "invalid_csv_blocks_pdf": true,
+  "row_selection_shows_hint": true,
+  "corrected_metrics": [
+    "2 250,00",
+    "14",
+    "160,71"
+  ],
+  "repaired_import_clears_errors": true,
+  "date": "2026-10-04",
+  "input_kind": "synthetic",
+  "runtime": "Windows / Edge, local server",
+  "mode": "packaged-exe",
+  "isolated_profiles": true,
+  "pdf_pages": 2,
+  "pdf_text_checks": true,
+  "diagnostic_csv_lines": [
+    10,
+    14
+  ],
+  "source_unchanged": true,
+  "expected": {
+    "data_kind": "synthetic",
+    "currency": "PLN",
+    "amount_basis": "nieokreślona",
+    "full": {
+      "start": "2026-08-31",
+      "end": "2026-09-13",
+      "rows": 14,
+      "total": "2250.00",
+      "average": "160.71",
+      "categories": {
+        "Papier": "1000.00",
+        "Teczki i segregatory": "750.00",
+        "Środki czystości": "500.00"
+      }
+    },
+    "current": {
+      "start": "2026-09-07",
+      "end": "2026-09-13",
+      "rows": 7,
+      "total": "1250.00",
+      "average": "178.57",
+      "categories": {
+        "Papier": "550.00",
+        "Teczki i segregatory": "450.00",
+        "Środki czystości": "250.00"
+      }
+    },
+    "previous": {
+      "start": "2026-08-31",
+      "end": "2026-09-06",
+      "rows": 7,
+      "total": "1000.00",
+      "average": "142.86",
+      "categories": {
+        "Papier": "450.00",
+        "Teczki i segregatory": "300.00",
+        "Środki czystości": "250.00"
+      }
+    },
+    "comparison_in_simple_mode": "unavailable: export completeness not declared",
+    "change_if_both_periods_confirmed_complete": "25.00%",
+    "bad_fields": [
+      {
+        "csv_line": 10,
+        "column": "value",
+        "value": "abc"
+      },
+      {
+        "csv_line": 14,
+        "column": "category",
+        "value": ""
+      }
+    ],
+    "source_sha256": "89473b8e715b6e21e3513df6226b632bbc6e31ae5052681bab03af08acedac7f"
+  },
+  "pdf_sha256": "2bc634740c9da2090fe259267183f9c786cf0e7badf81d4c69a5b1408cd1597f",
+  "exe_sha256": "84ad29d5c14d6bc39cef05f36329cf201d7f94e57b347caf0a38df9d24255cd4",
+  "video_duration_seconds": 41.76,
+  "video_decode_passed": true,
+  "media_sha256": {
+    "categories.png": "142f1496faa1afc75c51f41a047682be9b518ce2d731e25d99159ad536211f99",
+    "demo.mp4": "1eb070cafc7e92e759ef30c76391909fe346f67447d8f9b83c5f657dbd0677c4",
+    "diagnostics.png": "4e36dd1fa43d44aec048ba25c8953ccd51bd0df207cdfb2b4fb9be3834dcda62",
+    "overview.png": "a37d23ab1682213b7288fa244cddc2e969e09eadb9fe6c6fbb6e54d003988174",
+    "quality.png": "ad075a7519fb57c0ee37124afdf2407f918a706df29d51d0754625b12e99a792"
+  }
+}

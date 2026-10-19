@@ -1,0 +1,56 @@
+{
+  "data_kind": "synthetic",
+  "currency": "PLN",
+  "amount_basis": "nieokreślona",
+  "full": {
+    "start": "2026-08-31",
+    "end": "2026-09-13",
+    "rows": 14,
+    "total": "2250.00",
+    "average": "160.71",
+    "categories": {
+      "Papier": "1000.00",
+      "Teczki i segregatory": "750.00",
+      "Środki czystości": "500.00"
+    }
+  },
+  "current": {
+    "start": "2026-09-07",
+    "end": "2026-09-13",
+    "rows": 7,
+    "total": "1250.00",
+    "average": "178.57",
+    "categories": {
+      "Papier": "550.00",
+      "Teczki i segregatory": "450.00",
+      "Środki czystości": "250.00"
+    }
+  },
+  "previous": {
+    "start": "2026-08-31",
+    "end": "2026-09-06",
+    "rows": 7,
+    "total": "1000.00",
+    "average": "142.86",
+    "categories": {
+      "Papier": "450.00",
+      "Teczki i segregatory": "300.00",
+      "Środki czystości": "250.00"
+    }
+  },
+  "comparison_in_simple_mode": "unavailable: export completeness not declared",
+  "change_if_both_periods_confirmed_complete": "25.00%",
+  "bad_fields": [
+    {
+      "csv_line": 10,
+      "column": "value",
+      "value": "abc"
+    },
+    {
+      "csv_line": 14,
+      "column": "category",
+      "value": ""
+    }
+  ],
+  "source_sha256": "89473b8e715b6e21e3513df6226b632bbc6e31ae5052681bab03af08acedac7f"
+}

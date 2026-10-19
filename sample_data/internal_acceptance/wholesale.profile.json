@@ -1,0 +1,22 @@
+{
+  "date_col": "date",
+  "value_col": "value",
+  "category_col": "category",
+  "delimiter": ",",
+  "encoding": "utf-8-sig",
+  "date_format": "%Y-%m-%d",
+  "decimal_separator": ".",
+  "allow_negative": true,
+  "currency": "PLN",
+  "amount_basis": "netto",
+  "amount_precision": "strict",
+  "quantity_col": "quantity",
+  "order_col": "order",
+  "product_col": "product",
+  "customer_col": "customer",
+  "cost_col": "cost",
+  "profit_col": "",
+  "value_is_sales": true,
+  "quantity_unit": "szt.",
+  "value_mode": "amount"
+}

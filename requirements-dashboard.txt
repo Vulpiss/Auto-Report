@@ -1,0 +1,4 @@
+-r requirements.txt
+streamlit==1.57.0
+pandas==3.0.2
+altair==6.1.0

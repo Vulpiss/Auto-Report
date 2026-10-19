@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-19",
+  "result": "PASS_LOCAL_PUBLICATION_CHECKS",
+  "data": "synthetic",
+  "regression": {
+    "tests": 146,
+    "seconds": 21.267,
+    "result": "PASS",
+    "log_sha256": "eee78bdd63bf88ea23c31bec2954b377df0f3879c097a951ae3bc15e13f77f69"
+  },
+  "runtime_source_files_matched": 34,
+  "runtime_rebuilt": false,
+  "assets": [
+    {
+      "name": "AutoReportAnalyst-Windows-2026-10-06-hardening.zip",
+      "bytes": 97758024,
+      "sha256": "d99a954fc1c3be63c452e0607a6158f99f7196df3754cfa8e2dcadcf71f6f430"
+    },
+    {
+      "name": "AutoReport-FirstTest-Windows-2026-10-14.zip",
+      "bytes": 97794784,
+      "sha256": "1ceb1bd89f6297330c6cbb595746021648a310167cfb24cf59c5dd20806dd82c"
+    }
+  ],
+  "exe_sha256": "c440b3f4e40fae3c0371dc4bd84c3f1d460fd1aa1fbb1d3e65432a6388b53c00",
+  "zip_crc": "PASS",
+  "clean_windows": "UNKNOWN",
+  "new_user_independence": "UNKNOWN",
+  "customer_pilot": "UNKNOWN",
+  "git_export_regression": {
+    "tests": 146,
+    "seconds": 20.11,
+    "result": "PASS",
+    "log_sha256": "6641cbc24d884dc496fe2c679a8b6e5ddf021f4af2dfbe52f0ec1595136898d7"
+  },
+  "publication_files": {
+    "tracked_files": 239,
+    "new_document_local_links": 41,
+    "known_secret_patterns": "NO_MATCH",
+    "excluded_local_files": "PASS",
+    "published_pdf_bytes": "IDENTICAL"
+  },
+  "workstation_check": {
+    "result": "PASS_SERVER_RESTART",
+    "scope": "Owned EXE server only; two starts with isolated settings and no Python in PATH",
+    "sessions": [
+      {
+        "number": 1,
+        "port": 58208,
+        "health": true,
+        "stopped": true,
+        "python_in_path": false
+      },
+      {
+        "number": 2,
+        "port": 58213,
+        "health": true,
+        "stopped": true,
+        "python_in_path": false
+      }
+    ],
+    "exe_sha256": "c440b3f4e40fae3c0371dc4bd84c3f1d460fd1aa1fbb1d3e65432a6388b53c00",
+    "execution": "Reviewed script body executed as a PowerShell command; system execution policy unchanged"
+  },
+  "first_test_manifest_files_verified": 23
+}
